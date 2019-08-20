@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, withRouter, Switch } from "react-router-dom";
+import { Provider, connect } from 'react-redux';
+import { LocaleProvider } from 'antd';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
+import { RouteWithSubRoutes, routes, pathMap } from './route'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<LocaleProvider locale={zh_CN}>
+				<Provider store={this.props.store}>
+					<Router>
+						<Switch>
+							{routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+						</Switch>
+					</Router>
+				</Provider>
+			</LocaleProvider>
+		)
+	}
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		userInfo: state.userInfo
+	}
+}
+
+const mapDispatchToProps = dispath => {
+	return {
+	}
+}
+
+const AppWithState = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default AppWithState
+
