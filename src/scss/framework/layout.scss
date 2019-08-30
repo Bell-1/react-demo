@@ -1,10 +1,18 @@
 .app {
 	height: 100vh !important;
+
 	.header-menu {
 		color: white;
+
 		.ant-col {
 			margin-left: 10px;
 			cursor: pointer;
+			font-size: 16px;
 		}
+	}
+
+	.ant-layout-content {
+		background: white;
+		overflow-y: scroll;
 	}
 }

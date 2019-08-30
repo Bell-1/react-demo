@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { notify } from './tips'
+import { message } from 'antd'
 
 class Http {
     constructor(arg) {
@@ -8,6 +10,8 @@ class Http {
             login: Http.genApi('POST', '/user/login'), // 登陆
             logout: Http.genApi('POST', '/user/logout'), // 退出登陆
             regist: Http.genApi('POST', '/user/regist'), // 注册
+            testCreate: Http.genApi('POST', '/test/create'), // 测试 新建一条数据
+            testQuery: Http.genApi('POST', '/test/query'), // 测试 查询数据
 
         }; //接口列表
     }
@@ -51,10 +55,11 @@ class Http {
         type = 1
     } = {}) {
         let api = this.getApiName(apiName),
-            token = sessionStorage.getItem('token'),
+            token = localStorage.getItem('token'),
             headers = {
                 token
             };
+            console.log(token);
         return new Promise((resolve, reject) => {
             if (api) {
                 if (type === 2) {
@@ -73,11 +78,12 @@ class Http {
                     params: api.method === 'GET' ? dataToSend : undefined,
                     baseURL: this.baseURL,
                 }).then((res) => {
-                    console.log('res', res);
+                    console.log(`${apiName} request:`, res);
                     let data = res.data;
-                    if(data.code === 200){
+                    if (data.code === 200) {
                         resolve(data.data)
-                    }else {
+                    } else {
+                        message.error(data.msg);
                         reject(data);
                     }
                 }).catch(() => {

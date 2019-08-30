@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, withRouter, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider, connect } from 'react-redux';
 import { LocaleProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';

@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import Login from '@/views/Login/Login';
 import Container from '@/views/Container';
 import Dashboard from '@/views/Dashboard/Dashboard'
+import Table from '@/views/Table/Table'
 import User from '@/views/User/User'
 import Load from '@/views/Load/Load'
 import DigitalScroll from '@/views/DigitalScroll/DigitalScroll'
@@ -19,36 +20,41 @@ export const routes = [{
 	path: '/app',
 	component: Container,
 	routes: [{
+		path: "/app/table",
+		component: Table,
+		breadcrumb: ['home', 'table']
+	}, {
 		path: "/app/dashboard",
 		component: Dashboard,
-		breadcrumb: ['首页', '图表']
-	},
-	{
+		breadcrumb: ['home', 'echart']
+	}, {
 		path: "/app/digitalScroll",
 		component: DigitalScroll,
-		breadcrumb: ['首页', '数字滚动']
-	},
-	{
+		breadcrumb: ['home', 'numberScroll']
+	}, {
 		path: "/app/user",
 		component: User,
-		breadcrumb: ['首页', '个人中心']
-	},
-	{
+		breadcrumb: ['home', 'person']
+	}, {
 		path: "/app/load",
 		component: Load,
-		breadcrumb: ['首页', '加载']
-	}
-	]
+		breadcrumb: ['home', 'loading']
+	}, {
+		component: NotFound,
+	}]
+}, {
+	component: NotFound,
 }];
 
 
 export const pathMap = {
-	登录: '/login',
-	首页: '/app/dashboard',
-	图表: '/app/dashboard',
-	个人中心: '/app/user',
-	加载: '/app/load',
-	数字滚动: '/app/digitalScroll',
+	login: '/login',
+	home: '/app/table',
+	table: '/app/table',
+	echart: '/app/dashboard',
+	user: '/app/user',
+	loading: '/app/load',
+	numberScroll: '/app/digitalScroll',
 }
 
 

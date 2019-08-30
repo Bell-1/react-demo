@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { Layout, Breadcrumb } from 'antd'
 import Header from './menu/head'
@@ -24,7 +24,7 @@ class Container extends Component {
 			//未登录去登陆页面
 			history.push('/login');
 		}
-		if (route) {
+		if (route && route.breadcrumb) {
 			breadcrumbItems = route.breadcrumb.map((pathName) => {
 				const path = pathMap[pathName];
 				return (<Breadcrumb.Item key={path}>
@@ -43,8 +43,10 @@ class Container extends Component {
 						<Breadcrumb className={'main-bread-crumb'} style={{ padding: '10px 0' }}>
 							{breadcrumbItems}
 						</Breadcrumb>
-						<Content style={{ background: 'white' }}>
-							{routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+						<Content>
+							<Switch>
+								{routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+							</Switch>
 						</Content>
 					</Layout>
 

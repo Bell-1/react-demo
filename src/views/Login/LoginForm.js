@@ -60,10 +60,15 @@ class LoginForm extends Component {
 			localStorage.setItem('userInfo', userInfo);
 			localStorage.setItem('token', token);
 			this.props.loginSuccess(userInfo)
-			this.props.history.push('/app/dashboard');
+			this.props.history.push('/app/table');
 		} catch (error) {
 			console.error(error)
 			return
+		}
+	}
+	enter=({keyCode})=>{
+		if(keyCode === 13){
+			this.login();
 		}
 	}
 	render() {
@@ -72,7 +77,7 @@ class LoginForm extends Component {
 		const userNameError = getFieldError('userName');
 		const passwordError = getFieldError('password');
 		return (
-			<Form onSubmit={this.login}>
+			<Form onSubmit={this.login} onKeyUp = { this.enter }>
 				<Title level={2} style={{ color: "white" }}>登录</Title>
 				<Form.Item validateStatus={userNameError ? 'error' : ''} help={userNameError || ''}>
 					{getFieldDecorator('userName', {

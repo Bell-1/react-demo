@@ -11,17 +11,21 @@ export default class Side extends Component {
 		super(props);
 		this.state = {
 			menus: [{
-				title: '图表',
-				to: '/app/dashboard',
-				key: '0',
-			}, {
-				title: '加载',
-				to: '/app/load',
+				title: 'Table',
+				to: '/app/Table',
 				key: '1',
-			}, {
-				title: '数字滚动',
-				to: '/app/digitalScroll',
+			},{
+				title: 'EChart',
+				to: '/app/dashboard',
 				key: '2',
+			}, {
+				title: 'loading',
+				to: '/app/load',
+				key: '3',
+			}, {
+				title: 'NumberScroll',
+				to: '/app/digitalScroll',
+				key: '4',
 			}]
 		}
 	}
