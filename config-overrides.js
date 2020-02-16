@@ -1,10 +1,25 @@
-/* config-overrides.js */
 const path = require('path');
 
-module.exports = function override(config, env) {
-	config.resolve.alias['@'] = path.resolve(__dirname, './src');
-	config.resolve.alias['@assets'] = path.resolve(__dirname, './src/assets');
-	config.resolve.alias['@views'] = path.resolve(__dirname, './src/views');
-	config.resolve.alias['@utils'] = path.resolve(__dirname, './src/utils');
-	return config;
+function resolve(dir) {
+	return path.join(__dirname, dir)
 }
+const {
+	override,
+	useBabelRc,
+	fixBabelImports,
+	addWebpackAlias,
+} = require('customize-cra')
+
+const fixBabelImportsConfig = {
+	libraryName: 'antd',
+	libraryDirectory: 'es',
+	style: 'css',
+};
+
+const alias = {
+	"@": resolve('src')
+}
+
+const config = override(useBabelRc(), fixBabelImports('import', fixBabelImportsConfig), addWebpackAlias(alias));
+
+module.exports = config

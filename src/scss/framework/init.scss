@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-style: normal;
+	font-weight: normal;
+}
+
+body {
+	background: #fff;
+	color: #333;
+	font-size: 14px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+
+ol,
+ul,
+li {
+	list-style: none;
+}

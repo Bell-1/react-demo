@@ -1,18 +1,35 @@
-.app {
-	height: 100vh !important;
+#root, .App {
+	height: 100%;
+}
+.ant-layout {
+	height: 100%;
+	background-color: #f0f2f5;
+}
 
-	.header-menu {
+.logo {
+	padding: 10px 15px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	img {
+		width: 100%;
+	}
+}
+
+.header-custom {
+	padding-left: 0;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	.header__trigger {
+		font-size: 18px;
+		padding: 0 16px;
 		color: white;
-
-		.ant-col {
-			margin-left: 10px;
-			cursor: pointer;
-			font-size: 16px;
-		}
 	}
+}
 
-	.ant-layout-content {
-		background: white;
-		overflow-y: scroll;
-	}
+.app-content {
+	padding: 0 20px;
 }

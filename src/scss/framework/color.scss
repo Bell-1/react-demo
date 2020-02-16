@@ -1,0 +1,31 @@
+$themeBg: #F2F6FC;
+$primary: #007eff;
+$danger: #f36c68;
+$info: #999;
+$success: #2fb245;
+
+$color-checkin: #1889fd;
+$color-empty: #2fb245;
+$color-abnormal: #ff5236;
+$color-no-device: #dfe8f1;
+$color-auth-end: #93bbe3;
+$color-hover: #dfeffe;
+$color-offline: #f36c68;
+$color-auth-end: #93bbe3;
+
+
+.c-danger {
+	color: $danger !important;
+}
+
+.c-primary {
+	color: $primary !important;
+}
+
+.c-info {
+	color: $info !important;
+}
+
+.theme-green {
+	$primary: green;
+}
