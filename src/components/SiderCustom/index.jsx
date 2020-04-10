@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from "react-router-dom";
-import { Layout, Menu, Icon } from 'antd'
+import { withRouter } from "react-router-dom";
+import { Layout, Menu } from 'antd'
 import configRoutes from '@/router/config'
+import { TableOutlined, HomeOutlined, FieldBinaryOutlined, LoadingOutlined } from '@ant-design/icons';
+import logo from '@/assets/logo/logo2.png'
+
+const icons = {
+	TableOutlined: <TableOutlined />,
+	HomeOutlined: <HomeOutlined />,
+	FieldBinaryOutlined: <FieldBinaryOutlined />,
+	LoadingOutlined: <LoadingOutlined />,
+}
 
 const { menus } = configRoutes;
 const { Sider } = Layout;
@@ -23,7 +32,7 @@ class SiderCustom extends Component {
 
 	createMenu = (route) => {
 
-		const createItem = ({ key, icon, title }) => {
+		const createItem = ({ key, icon, title, subs }) => {
 			return (
 				<Item key={key} onClick={this.handleMenuItem.bind(this, key)}>
 					{createTitle({ icon, title })}
@@ -45,7 +54,7 @@ class SiderCustom extends Component {
 		const createTitle = ({ key, icon, title }) => {
 			return (
 				<span>
-					{icon && (<Icon type={icon} ></Icon>)}
+					{(icon && icons[icon]) || null}
 					<span>{title}</span>
 				</span>
 			)
@@ -54,17 +63,13 @@ class SiderCustom extends Component {
 		return route.subs ? createSubMenu(route) : createItem(route);
 	}
 
-	componentDidMount() {
-		console.log('menus', menus)
-	}
-
 	render() {
-		const { collapsed, mode } = this.props;
+		const { collapsed } = this.props;
 
 		return (
 			<Sider collapsed={collapsed}>
-				<div className="logo">
-					logo
+				<div className={['logo', collapsed && 'hide'].join(' ')}>
+					<img src={logo} alt="" />
 				</div>
 				<Menu
 					theme="dark"

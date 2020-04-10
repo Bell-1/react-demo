@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import _ from 'lodash'
 import echarts from "echarts"
 import moment from 'moment'
 
-class Line extends Component {
+export default class Line extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,12 +16,6 @@ class Line extends Component {
 	componentDidMount() {
 		this.initChart();
 		window.addEventListener('resize', this.reset);
-	}
-
-	componentWillUpdate(state){
-		if(state.collapsed != this.props.collapsed){
-			this.reset();
-		}
 	}
 
 	componentWillUnmount() {
@@ -42,7 +35,6 @@ class Line extends Component {
 			chart1,
 		}, () => {
 			this.updateChart();
-			this.reset();
 		})
 	}
 
@@ -136,21 +128,3 @@ class Line extends Component {
 		)
 	}
 }
-const mapStateToProps = state => {
-	return {
-		collapsed: state.app.collapsed
-	}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return {
-	}
-}
-
-const LineStore = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Line)
-
-export default LineStore;
-

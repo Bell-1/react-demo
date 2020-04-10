@@ -1,23 +1,48 @@
 import React, { Component } from 'react'
-import { Layout, Icon } from 'antd'
+import { connect } from 'react-redux'
+import { Layout } from 'antd'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
 const { Header } = Layout;
 
-export default class HeaderCustom extends Component {
-	constructor(props){
+class HeaderCustom extends Component {
+	constructor(props) {
 		super(props);
 		this.state = {
 		}
 	}
+
+	logout = () => {
+		this.props.history.push('/login');
+	}
+
 	render() {
+		const { toggle, collapsed, userInfo } = this.props;
 		return (
 			<Header className="header-custom">
-				<Icon
-					className="header__trigger"
-					type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-					onClick={this.props.toggle}
-				/>
+				<div className="header__trigger">
+					{collapsed ? <MenuUnfoldOutlined onClick={toggle} /> : <MenuFoldOutlined onClick={toggle} />}
+				</div>
+				<div className="right">
+					<div className="user">欢迎: {userInfo && userInfo.name}</div>
+					<div className="logout" onClick={this.logout}>退出</div>
+				</div>
 			</Header>
 		)
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		userInfo: state.user.userInfo || null
+	}
+}
+
+const mapDispatchToProps = dispath => {
+	return {
+	}
+}
+const withState = connect(mapStateToProps, mapDispatchToProps)(HeaderCustom);
+
+
+export default withState;

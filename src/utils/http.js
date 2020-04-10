@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { notify } from './tips'
 import { message } from 'antd'
 
 class Http {
@@ -7,11 +6,14 @@ class Http {
         this.baseURL = ''; //正式服务器
         this.apiList = {
             /*------------------------登陆--------------------------*/
-            login: Http.genApi('POST', '/user/login'), // 登陆
-            logout: Http.genApi('POST', '/user/logout'), // 退出登陆
-            regist: Http.genApi('POST', '/user/regist'), // 注册
-            testCreate: Http.genApi('POST', '/test/create'), // 测试 新建一条数据
-            testQuery: Http.genApi('POST', '/test/query'), // 测试 查询数据
+            login: Http.genApi('POST', '/api/admin/login'), // 登陆
+            logout: Http.genApi('POST', '/api/admin/logout'), // 退出登陆
+            regist: Http.genApi('POST', '/api/admin/register'), // 注册
+            userList: Http.genApi('GET', '/api/user/list'), // 用户列表
+            userCreate: Http.genApi('POST', '/api/user/create'), // 创建成员
+            userEdit: Http.genApi('POST', '/api/user/edit'), // 编辑
+            userDel: Http.genApi('DELETE', '/api/user/del'), // 删除成员
+            userInfo: Http.genApi('GET', '/api/user/info'), // 用户信息
 
         }; //接口列表
     }
@@ -80,7 +82,7 @@ class Http {
                 }).then((res) => {
                     console.log(`${apiName} request:`, res);
                     let data = res.data;
-                    if (data.code === 200) {
+                    if (data.code === 1) {
                         resolve(data.data)
                     } else {
                         message.error(data.msg);

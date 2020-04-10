@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import AppRouter from '@/router'
-import { connect } from 'react-redux'
 import SiderCustom from '@/components/SiderCustom'
 import HeaderCustom from '@/components/HeaderCustom'
-import { toggleSideMenu } from '@/store/actions/app'
 
 const { Content } = Layout;
 
-class App extends Component {
+export default class App extends Component {
 
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			a: 1
+			collapsed: true,
 		}
 	}
 
-	viewPage(page) {
+	toggleSideMenu = () => {
+		const { collapsed } = this.state;
+		this.setState({
+			collapsed: !collapsed,
+		})
 	}
-
-	componentDidMount() {
-		console.log(this.props)
-	}
-
 
 	render() {
-		const { collapsed, toggleSideMenu } = this.props;
+		const { collapsed } = this.state;
 
 		return (
 			<div className="App">
@@ -35,7 +32,8 @@ class App extends Component {
 					<SiderCustom collapsed={collapsed} />
 					<Layout>
 						<HeaderCustom
-							toggle={toggleSideMenu}
+							toggle={this.toggleSideMenu}
+							history={this.props.history}
 							collapsed={collapsed}
 						></HeaderCustom>
 						<Content className="app-content">
@@ -47,25 +45,3 @@ class App extends Component {
 		)
 	}
 };
-
-const mapStateToProps = state => {
-	return {
-		collapsed: state.app.collapsed
-	}
-}
-
-const mapDispatchToProps = (dispatch, ownProps, state) => {
-	console.log('ownProps', ownProps, state)
-	return {
-		toggleSideMenu: () => {
-			dispatch(toggleSideMenu())
-		}
-	}
-}
-
-const AppStore = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(App)
-
-export default AppStore;

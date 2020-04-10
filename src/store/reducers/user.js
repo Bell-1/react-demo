@@ -6,20 +6,20 @@ if (localUserInfo) {
 		console.error(error)
 	}
 }
+
 const user = {
 	userInfo: localUserInfo || null,
 };
 
 export default function userReducer(state = user, { type, data }) {
 	switch (type) {
-	case 'GET_INFO':
-		return state
-	case 'SET_INFO':
-		return Object.assign({}, state, data)
 	case 'LOGINSUCCESS':
 		localStorage.setItem('userInfo', JSON.stringify(data)); //用户信息存本地，刷新时使用
+		localStorage.setItem('token', data.token); //token
 		return Object.assign({}, state, { userInfo: data });
+	case 'LOGOUT':
+		return Object.assign({}, state, { userInfo: null });
 	default:
-		return state
+		return state;
 	}
 }

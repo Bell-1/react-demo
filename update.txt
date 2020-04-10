@@ -1,0 +1,5 @@
+cd /usr/local/nginx/html
+tar -czf log/react-$(date +%Y%m%d%H%M%S).tar.gz reactWeb
+rm -rf reactWeb
+mv -f  react reactWeb
+

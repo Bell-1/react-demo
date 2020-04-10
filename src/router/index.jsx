@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
-import routesConfig from './config.js'
+import routesConfig from './config'
 import allComponent from './allComponent'
+
 
 export default class CrRoutes extends Component {
 	createRoute = (key) => {
@@ -32,7 +33,6 @@ export default class CrRoutes extends Component {
 	}
 
 	componentDidMount(){
-		console.log(Object.keys(routesConfig).map(key => this.createRoute(key)))
 	}
 
 	render() {

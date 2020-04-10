@@ -1,20 +1,38 @@
-#root, .App {
+#root,
+.App {
 	height: 100%;
 }
+
 .ant-layout {
 	height: 100%;
 	background-color: #f0f2f5;
+
+	.ant-layout-header {
+	}
 }
 
 .logo {
-	padding: 10px 15px;
-	height: 50px;
+	height: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: white;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+
+	&.hide {
+		img {
+			transform: translateX(-34px);
+			// transform: translateX(40px);
+		}
+	}
+
 	img {
-		width: 100%;
+		width: 200px;
+		filter: grayscale(100%);
+		transform: translateX(0);
+		transition: all 0.2s;
 	}
 }
 
@@ -23,10 +41,34 @@
 	position: sticky;
 	top: 0;
 	z-index: 100;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
 	.header__trigger {
 		font-size: 18px;
 		padding: 0 16px;
 		color: white;
+	}
+
+	.right {
+		color: white;
+		display: flex;
+		align-items: center;
+
+		.user {
+			padding: 0 10px;
+		}
+
+		.logout {
+			cursor: pointer;
+			color: rgb(233, 212, 212);
+
+			&:hover {
+				color: rgb(250, 168, 168);
+			}
+		}
 	}
 }
 

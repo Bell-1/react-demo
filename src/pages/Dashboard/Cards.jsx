@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Card, Icon } from "antd"
+import { Card } from "antd"
+import { HeartOutlined, DislikeOutlined, TeamOutlined, ShareAltOutlined } from '@ant-design/icons'
 
 export default class cards extends Component {
 	render() {
@@ -7,7 +8,7 @@ export default class cards extends Component {
 			<div className="cards flex wrap j-around">
 				<Card className="__item">
 					<div className="__content flex">
-						<Icon className="img" type="heart" />
+						<HeartOutlined />
 						<div className="t">
 							<div >收藏</div>
 							<div className="b">756</div>
@@ -16,7 +17,7 @@ export default class cards extends Component {
 				</Card>
 				<Card className="__item">
 					<div className="__content flex">
-						<Icon className="img" type="like" />
+						<DislikeOutlined />
 						<div className="t">
 							<div>点赞</div>
 							<div className="b">964</div>
@@ -25,7 +26,7 @@ export default class cards extends Component {
 				</Card>
 				<Card className="__item">
 					<div className="__content flex">
-						<Icon className="img" type="team" />
+						<TeamOutlined />
 						<div className="t">
 							<div>粉丝</div>
 							<div className="b">454</div>
@@ -34,7 +35,7 @@ export default class cards extends Component {
 				</Card>
 				<Card className="__item">
 					<div className="__content flex">
-						<Icon className="img" type="share-alt" />
+						<ShareAltOutlined />
 						<div className="t">
 							<div>转发</div>
 							<div className="b">1564</div>
